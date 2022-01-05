@@ -1,5 +1,5 @@
 import numpy as np
-import angle_generation as ag
+import joint_positions as ag
 from matplotlib import pyplot as plt
 from matplotlib import animation
 
@@ -45,5 +45,5 @@ def do_wave_animation():
     # writergif = animation.PillowWriter(fps=30)
     # anim.save(f, writer=writergif)
 
-
-do_wave_animation()
+if __name__ == "__main__":
+    do_wave_animation()

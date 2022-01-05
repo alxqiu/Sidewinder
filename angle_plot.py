@@ -1,4 +1,4 @@
-import angle_generation as ag
+import joint_positions as ag
 import numpy as np
 import matplotlib.pyplot as plt
 import math
@@ -25,7 +25,8 @@ def joint_angle(n):
 
     plt.show()
 
-joint_angle(5)
+if __name__ == "__main__":
+    joint_angle(5)
 
 
 """
