@@ -90,9 +90,9 @@ def record_relative_angles():
 
 if __name__ == "__main__":
     # joint_angle(0)
-    relative_angle(0)
+    # relative_angle(2)
 
-    #record_relative_angles()
+    record_relative_angles()
 
 
 """

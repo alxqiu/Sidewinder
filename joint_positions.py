@@ -8,7 +8,7 @@ May also make hor_offset a non-constant to allow matplotlib to
 "animate" the wave moving from left to right.
 """
 AMPLITUDE = 140
-WAVELENGTH = 700
+WAVELENGTH = 840
 HOR_OFFSET = 0
 VER_OFFSET = 0
 
