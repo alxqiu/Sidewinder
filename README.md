@@ -22,7 +22,7 @@ Next Steps:
 	Tabulate relative angle measurements per tick and put it in simulink
 	
 Sample Animation:
-	<img src="https://github.com/alxqiu/Sidewinder/blob/main/animation.gif" width="40" height="40" />
+	<img src="https://github.com/alxqiu/Sidewinder/blob/main/animation.gif" width="720" height="720" />
 
 
 Wavelength: 840mm, Amplitude: 140mm, Segment Length: 280mm
