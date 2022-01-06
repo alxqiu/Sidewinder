@@ -111,7 +111,7 @@ if __name__ == "__main__":
     # show_absolute_angle(3)
     # show_relative_angle(0)
 
-    record_relative_angles(True)
+    record_relative_angles(False)
 
 
 

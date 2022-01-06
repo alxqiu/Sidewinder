@@ -7,14 +7,14 @@ Constants for movement, subject to change.
 May also make hor_offset a non-constant to allow matplotlib to 
 "animate" the wave moving from left to right.
 """
-AMPLITUDE = 140
+AMPLITUDE = 70
 WAVELENGTH = 840
 HOR_OFFSET = 0
 VER_OFFSET = 0
 
 SEG_LEN = 280
 HEAD_LEN = 270
-NUM_JOINTS = 6
+NUM_JOINTS = 5
 
 def sine(x : float) -> float:
     """
