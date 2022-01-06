@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import math
 
 TICKS = 200
-MS_PER_TICK = 0.01
+S_PER_TICK = 0.01
 
 def tick_joint_pos(i):
     return ag.find_joint_coords(
@@ -69,8 +69,8 @@ def show_relative_angle(n):
 
 
 def record_relative_angles(isHorizontal):
-    # keep it at 200 ticks, each being 0.01 second
-    init_data = {"tick": [MS_PER_TICK * i for i in range(TICKS)]}
+    # keep it at 200 ticks, each being 0.01 second, or 10 ms
+    init_data = {"tick": [S_PER_TICK * i for i in range(TICKS)]}
     for i in range(0, ag.NUM_JOINTS):
         init_data[str(i)] = [0 for i in range(TICKS)]
     df = pd.DataFrame(data=init_data)
