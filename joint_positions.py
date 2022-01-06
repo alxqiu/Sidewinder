@@ -8,11 +8,11 @@ May also make hor_offset a non-constant to allow matplotlib to
 "animate" the wave moving from left to right.
 """
 AMPLITUDE = 140
-WAVELENGTH = 450
+WAVELENGTH = 700
 HOR_OFFSET = 0
 VER_OFFSET = 0
 
-SEG_LEN = 140
+SEG_LEN = 280
 HEAD_LEN = 270
 NUM_JOINTS = 6
 
@@ -42,7 +42,7 @@ def find_joint_coords(sine_func) -> list:
     for i in range(0, NUM_JOINTS):
         guessed_dist = 0.0
         min_x = 0.0 + result[0][i]
-        max_x = 140.0 + result[0][i]
+        max_x = SEG_LEN + result[0][i]
         guessed_x = 0.0
         # essentially estimate the x coordinate of the next joint in the sequence
         # getting down to +/- 1mm in precision to the ideal distance.
