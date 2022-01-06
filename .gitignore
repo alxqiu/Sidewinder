@@ -1,0 +1,21 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# hide 3D modeling and simulation code except for matlab
+/big_snake/slprj/
+/big_snake/BIG_Idea_Snake.slx
+/big_snake/BIG_Idea_Snake.slx.original
+/big_snake/BIG_Idea_Snake.slxc
+/big_snake/Head Module - Simulation.STL
+/big_snake/Payload Circular Snake Module - Simulation.STL
+/big_snake/Snake Simulation Assembly_v2.STL
+
+
+# hide Pycharm Stuff
+/.idea/

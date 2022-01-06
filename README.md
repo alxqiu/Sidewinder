@@ -1,4 +1,5 @@
-# Sidewinder
+# COBRA - BIG IDEA 2022
+
  Angle simulation and experimentation for emulating sidewinding motion with a robotic snake.
 
 

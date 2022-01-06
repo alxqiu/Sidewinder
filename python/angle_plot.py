@@ -104,7 +104,7 @@ def record_relative_angles(isHorizontal):
     filename = "vertical_joints.csv"
     if isHorizontal:
         filename = "horizontal_joints.csv"
-    df.to_csv(filename, index=False)
+    df.to_csv("../big_snake/" + filename, index=False)
 
 
 if __name__ == "__main__":
