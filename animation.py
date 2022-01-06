@@ -34,9 +34,9 @@ def update_wave(frame):
 def do_wave_animation():
     anim = animation.FuncAnimation(fig, update_wave, init_func=init_wave, frames=200, interval=10, blit=True)
     plt.show()
-    f = r"C:\Users\Alex\PycharmProjects\Sidewinder\animation.gif"
-    writergif = animation.PillowWriter(fps=30)
-    anim.save(f, writer=writergif)
+    # f = r"C:\Users\Alex\PycharmProjects\Sidewinder\animation.gif"
+    # writergif = animation.PillowWriter(fps=30)
+    # anim.save(f, writer=writergif)
 
 if __name__ == "__main__":
     do_wave_animation()

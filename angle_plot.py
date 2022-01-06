@@ -4,19 +4,27 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 
-def joint_angle(n):
+
+def tick_joint_pos(i):
+    return ag.find_joint_coords(
+            lambda x: ag.AMPLITUDE *
+                      np.sin((2 * np.pi / ag.WAVELENGTH) *
+                             x - (2 * np.pi / ag.WAVELENGTH * i)))
+
+def show_joint_angle(n):
     if n < 0 or n > ag.NUM_JOINTS - 1:
-        raise Exception("invalid joint #, must be between 0 and %d, inclusive" % (ag.NUM_JOINTS - 1))
+        raise Exception("invalid joint #, must be between 0 and %d, "
+                        "inclusive" % (ag.NUM_JOINTS - 1))
 
     angle_vals = []
     for i in range(0, ag.WAVELENGTH):
-        coords = ag.find_joint_coords(
-            lambda x: ag.AMPLITUDE * np.sin((2 * np.pi / ag.WAVELENGTH) * x
-                                            - (2 * np.pi / ag.WAVELENGTH * i)))
+        coords = tick_joint_pos(i)
         angle = math.acos(
             (coords[0][n + 1] - coords[0][n]) /
-            math.dist((coords[0][n], coords[1][n]), (coords[0][n + 1], coords[1][n + 1])))
-        # flip angle to negative if the second coordinate is "lower" on y axis compared to first coord
+            math.dist((coords[0][n], coords[1][n]),
+                      (coords[0][n + 1], coords[1][n + 1])))
+        # flip angle to negative if the second coordinate is
+        # "lower" on y axis compared to first coord
         if coords[1][n] > coords[1][n + 1]:
             angle = -angle
         angle_vals.append(angle * (180/math.pi))
@@ -26,20 +34,21 @@ def joint_angle(n):
 
     plt.show()
 
-def relative_angle(n):
+
+def show_relative_angle(n):
     if n < 0 or n > ag.NUM_JOINTS - 1:
-        raise Exception("invalid joint #, must be between 0 and %d, inclusive" % (ag.NUM_JOINTS - 1))
+        raise Exception("invalid joint #, must be between 0 and %d, "
+                        "inclusive" % (ag.NUM_JOINTS - 1))
     relative_plot = []
     for i in range(0, ag.WAVELENGTH):
-        coords = ag.find_joint_coords(
-            lambda x: ag.AMPLITUDE * np.sin((2 * np.pi / ag.WAVELENGTH) * x
-                                            - (2 * np.pi / ag.WAVELENGTH * i)))
+        coords = tick_joint_pos(i)
         # absolute angles are relative to x axis
         abs_angles = []
         for k in range(0, ag.NUM_JOINTS):
             angle = math.acos(
                 (coords[0][k + 1] - coords[0][k]) /
-                math.dist((coords[0][k], coords[1][k]), (coords[0][k + 1], coords[1][k + 1])))
+                math.dist((coords[0][k], coords[1][k]),
+                          (coords[0][k + 1], coords[1][k + 1])))
             if coords[1][k] > coords[1][k + 1]:
                 angle = -angle
             abs_angles.append(angle * (180 / math.pi))
@@ -56,6 +65,7 @@ def relative_angle(n):
 
     plt.show()
 
+
 def record_relative_angles():
     # put it in a csv file using pandas
     # with leftmost column being the "ticks" at 5 unit intervals
@@ -66,14 +76,13 @@ def record_relative_angles():
     df = pd.DataFrame(data=init_data)
 
     for i in df["tick"].tolist():
-        coords = ag.find_joint_coords(
-            lambda x: ag.AMPLITUDE * np.sin((2 * np.pi / ag.WAVELENGTH) * x
-                                            - (2 * np.pi / ag.WAVELENGTH * i)))
+        coords = tick_joint_pos(i)
         abs_angles = []
         for k in range(0, ag.NUM_JOINTS):
             angle = math.acos(
                 (coords[0][k + 1] - coords[0][k]) /
-                math.dist((coords[0][k], coords[1][k]), (coords[0][k + 1], coords[1][k + 1])))
+                math.dist((coords[0][k], coords[1][k]),
+                          (coords[0][k + 1], coords[1][k + 1])))
             if coords[1][k] > coords[1][k + 1]:
                 angle = -angle
             abs_angles.append(angle * (180 / math.pi))
@@ -87,18 +96,10 @@ def record_relative_angles():
     df.to_csv("relative_joints.csv", index=False)
 
 
-
 if __name__ == "__main__":
-    # joint_angle(0)
-    # relative_angle(2)
+    # show_absolute_angle(3)
+    show_relative_angle(0)
 
-    record_relative_angles()
+    # record_relative_angles()
 
-
-"""
-Next steps: recursively find the angle in respect to the last joint's angle
-
-As we want the angle that each joint turns at, and when. 
-
-"""
 
