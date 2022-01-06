@@ -48,7 +48,7 @@ def find_joint_coords(sine_func) -> list:
         # getting down to +/- 1mm in precision to the ideal distance.
         while not ((guessed_dist <= SEG_LEN + 0.5) and (guessed_dist >= SEG_LEN - 0.5)
                    or (max_x - min_x <= 1.0)):
-            guessed_x = ((max_x - min_x) / 5.0) + min_x
+            guessed_x = ((max_x - min_x) / 3.0) + min_x
             # guessed_x = ((max_x + min_x) / 2.0)
             guessed_dist = math.sqrt((guessed_x - result[0][i])**2
                                      + (sine_func(guessed_x) - result[1][i])**2)
