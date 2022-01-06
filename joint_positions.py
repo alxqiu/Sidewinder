@@ -45,7 +45,7 @@ def find_joint_coords(sine_func) -> list:
         max_x = SEG_LEN + result[0][i]
         guessed_x = 0.0
         # essentially estimate the x coordinate of the next joint in the sequence
-        # getting down to +/- 1mm in precision to the ideal distance.
+        # getting down to +/- 0.5mm in precision to the ideal distance.
         while not ((guessed_dist <= SEG_LEN + 0.5) and (guessed_dist >= SEG_LEN - 0.5)
                    or (max_x - min_x <= 1.0)):
             guessed_x = ((max_x - min_x) / 3.0) + min_x
