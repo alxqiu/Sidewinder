@@ -19,12 +19,10 @@ External Dependencies:
 	Others are built in for Python 3
 
 Next Steps:
-	Develop measurement system for the angle of each joint relative to the angle the previous one was turned to. 
+	Tabulate relative angle measurements per tick and put it in simulink
 	
-	Once relative angles can be measured, find a function to represent it.
-
-	Perhaps see if measuring and plotting changes in angle is more useful, as that tells us how much each
-		motor needs to turn at each point in the wave. 
+Sample Animation:
+<img src="https://github.com/alxqiu/Sidewinder/blob/main/animation.gif" width="360" height="360" />
 
 
-
+Wavelength: 840mm, Amplitude: 140mm, Segment Length: 280mm
