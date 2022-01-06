@@ -38,6 +38,7 @@ def find_joint_coords(sine_func) -> list:
     """
 
     result = [[0.0], [sine_func(0)]]
+    # result = [[0.0], [0.0]]
 
     for i in range(0, NUM_JOINTS):
         guessed_dist = 0.0

@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 
+TICKS = 200
+MS_PER_TICK = 0.01
 
 def tick_joint_pos(i):
     return ag.find_joint_coords(
@@ -66,17 +68,15 @@ def show_relative_angle(n):
     plt.show()
 
 
-def record_relative_angles():
-    # put it in a csv file using pandas
-    # with leftmost column being the "ticks" at 5 unit intervals
-    # and then have each column to its right be the i-th joint i = [0...NUM_JOINTS]
-    init_data = {"tick": [5*i for i in range(0, int(ag.WAVELENGTH / 5))]}
+def record_relative_angles(isHorizontal):
+    # keep it at 200 ticks, each being 0.01 second
+    init_data = {"tick": [MS_PER_TICK * i for i in range(TICKS)]}
     for i in range(0, ag.NUM_JOINTS):
-        init_data[str(i)] = [0 for i in range(0, int(ag.WAVELENGTH / 5))]
+        init_data[str(i)] = [0 for i in range(TICKS)]
     df = pd.DataFrame(data=init_data)
 
-    for i in df["tick"].tolist():
-        coords = tick_joint_pos(i)
+    for i in range(TICKS):
+        coords = tick_joint_pos(float(i * ag.WAVELENGTH / TICKS))
         abs_angles = []
         for k in range(0, ag.NUM_JOINTS):
             angle = math.acos(
@@ -85,21 +85,33 @@ def record_relative_angles():
                           (coords[0][k + 1], coords[1][k + 1])))
             if coords[1][k] > coords[1][k + 1]:
                 angle = -angle
-            abs_angles.append(angle * (180 / math.pi))
+            abs_angles.append(float(angle * (180.0 / math.pi)))
         rel_angles = [abs_angles[0]]
         for k in range(1, ag.NUM_JOINTS):
             rel_angles.append(abs_angles[k] - abs_angles[k - 1])
         for k in range(len(rel_angles)):
             # adjust i (tick) for the row index in dataframe
-            df.at[i / 5, str(k)] = rel_angles[k]
+            df.at[i, str(k)] = rel_angles[k]
 
-    df.to_csv("relative_joints.csv", index=False)
+    # copy contents of first row, save for tick, into last row with tick
+    # last_row_dict = {"tick": MS_PER_TICK * TICKS}
+    # for i in range(0, ag.NUM_JOINTS):
+    #     last_row_dict[str(i)] = [df.at[0, str(i)]]
+    # last_row = pd.DataFrame(data=last_row_dict)
+    # df = pd.concat((df, last_row))
+
+
+    filename = "vertical_joints.csv"
+    if isHorizontal:
+        filename = "horizontal_joints.csv"
+    df.to_csv(filename, index=False)
 
 
 if __name__ == "__main__":
     # show_absolute_angle(3)
-    show_relative_angle(0)
+    # show_relative_angle(0)
 
-    # record_relative_angles()
+    record_relative_angles(False)
+
 
 
