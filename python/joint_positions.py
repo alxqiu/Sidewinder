@@ -7,14 +7,14 @@ Constants for movement, subject to change.
 May also make hor_offset a non-constant to allow matplotlib to 
 "animate" the wave moving from left to right.
 """
-AMPLITUDE = 70
+AMPLITUDE = 140
 WAVELENGTH = 840
 HOR_OFFSET = 0
 VER_OFFSET = 0
 
 SEG_LEN = 280
 HEAD_LEN = 270
-NUM_JOINTS = 5
+NUM_JOINTS = 6
 
 def sine(x : float) -> float:
     """
@@ -66,7 +66,7 @@ def find_joint_coords(sine_func) -> list:
 if __name__ == "__main__":
     found_coords = find_joint_coords(sine)
     print(found_coords)
-    print("Time taken: " + str(timeit.timeit(lambda: find_joint_coords(sine), number = 1)))
+    print("Time taken: " + str(timeit.timeit(lambda: find_joint_coords(sine), number=1)))
 
     plt.plot(found_coords[0], found_coords[1])
 

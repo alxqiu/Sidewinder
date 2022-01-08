@@ -4,8 +4,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 
+# TICKS are ticks per cycle
 TICKS = 200
 S_PER_TICK = 0.01
+CYCLES = 7
 
 def tick_joint_pos(i):
     return ag.find_joint_coords(
@@ -100,6 +102,16 @@ def record_relative_angles(isHorizontal):
     # last_row = pd.DataFrame(data=last_row_dict)
     # df = pd.concat((df, last_row))
 
+    # repeat for CYCLES
+    cycle_profile = pd.DataFrame(df, index=[i for i in range(TICKS)],
+                                 columns = [str(i) for i in range(ag.NUM_JOINTS)])
+
+    for i in range(1, CYCLES):
+        for j in range(TICKS):
+            cycle_profile.at[j, "tick"] = (j + (i * TICKS)) * S_PER_TICK
+        df = pd.concat((df, cycle_profile))
+        # re_adjust tick column
+
 
     filename = "vertical_joints.csv"
     if isHorizontal:
@@ -111,7 +123,7 @@ if __name__ == "__main__":
     # show_absolute_angle(3)
     # show_relative_angle(0)
 
-    record_relative_angles(False)
+    record_relative_angles(True)
 
 
 
